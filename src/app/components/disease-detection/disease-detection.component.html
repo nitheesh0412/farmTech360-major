@@ -1,0 +1,41 @@
+<div *ngIf="!isClickedSCM && !isClickedLSD" class="d-flex justify-content-around">
+  <div class="card shadow  mb-5 rounded" style="width: 18rem;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHeGyCPfueqJibWYKrpS0NJwsOnGstSSaD78nBA0HkQppAP2jYnAvB4g021if8jI_iFb8&usqp=CAU" class="card-img-top" style="width: 18rem; height: 10rem;" alt="...">
+    <div class="mx-auto p-5">
+      <button class="btn btn-info " (click)="SCMDetection()">SCM Detection</button>
+    </div>
+    
+  </div>
+  <div class="card shadow  mb-5  rounded" style="width: 18rem;">
+    <img src="https://nypost.com/wp-content/uploads/sites/2/2020/01/cow-feature.jpg?quality=75&strip=all" class="card-img-top" style="width: 18rem; height: 10rem;"  alt="...">
+    <div class="mx-auto p-5">
+      <button class="btn btn-info " (click)="LSDDetection()">LSD Detection</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isClickedSCM">
+  <div class="ms-5">
+    <h1> SCM detection</h1>
+    <input  class="w-50 form-control" type="file" 
+            (change)="onChange($event)"> 
+  
+    <button (click)="onUpload()"  
+        class="px-3 py-2 mt-3 btn btn-success"> 
+        Upload 
+    </button> 
+  </div>
+</div>
+
+<div *ngIf="isClickedLSD">
+  <div class="ms-5">
+    <h1>LSD detection</h1>
+    <input  class="w-50 form-control" type="file" 
+            (change)="onChange($event)"> 
+  
+    <button (click)="onUpload()"  
+        class="px-3 py-2 mt-3 btn btn-success"> 
+        Upload 
+    </button> 
+  </div>
+</div>

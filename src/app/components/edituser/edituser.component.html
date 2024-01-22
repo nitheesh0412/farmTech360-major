@@ -1,0 +1,30 @@
+<div class="container dialogedit">
+  <form [formGroup]="userData" class="container ps-5" >
+    <p>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </p>
+
+    <p class="ps-3">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="check">
+          <mat-option value="yes">yes</mat-option>
+          <mat-option value="no">no</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>
+      <!-- <div mat-dialog-actions> -->
+        <a>
+          <button mat-raised-button color="primary"  [disabled]="!userData.valid"  (click)="postUser(userData.value)">submit</button>
+        </a>
+      
+    </p>
+  </form>
+</div>

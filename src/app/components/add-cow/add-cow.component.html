@@ -1,0 +1,25 @@
+
+<div class="container d-flex flex-wrap justify-content-between">
+    <form [formGroup]="userData" class="container mainform" >
+      <p>
+        <mat-form-field>
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="enter cow ID" formControlName="id">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>age</mat-label>
+          <input matInput type="number"
+          placeholder="enter cow age"
+          formControlName="age">
+        </mat-form-field>
+      </p>
+      <p>
+        <a routerLink="/home">
+          <button mat-raised-button color="primary"   [disabled]="!userData.valid"  (click)="postCow(userData.value)">submit</button>
+        </a>
+      </p>
+    </form>
+
+</div>

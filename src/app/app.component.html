@@ -1,0 +1,69 @@
+
+
+
+<mat-toolbar>
+  <div class="">
+    <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button> FarmTech360
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')"
+    class="sidenav pt-3">
+    <mat-list>
+      <mat-list-item><a routerLink="home">
+          <div class="d-flex ">
+            <div class="pe-1"><mat-icon>home</mat-icon></div>
+            <div>Home</div>
+          </div>
+        </a></mat-list-item>
+      <mat-list-item><a routerLink="detect">
+          <div class="d-flex ">
+            <div class="pe-1"><mat-icon>local_pharmacy</mat-icon></div>
+            <div>Detect disease</div>
+          </div>
+        </a></mat-list-item>
+
+
+      <mat-list-item>
+        <a routerLink="location">
+          <div class="d-flex ">
+            <div class="pe-1"><mat-icon>location_on</mat-icon></div>
+            <div>veternary doctors</div>
+          </div>
+        </a></mat-list-item>
+
+
+      <mat-list-item><a routerLink="vaccination">
+          <div class="d-flex ">
+            <div class="pe-1"> 	<mat-icon>event_available</mat-icon></div>
+            <div>vaccination</div>
+          </div>
+
+        </a></mat-list-item>
+      <mat-list-item><a routerLink="markattendance">
+          <div class="d-flex ">
+            <div class="pe-1"> <mat-icon>spa</mat-icon></div>
+            <div>Nutrition</div>
+          </div>
+
+        </a></mat-list-item>
+
+        <mat-list-item><a routerLink="addcow">
+          <div class="d-flex ">
+            <div class="pe-1"> <mat-icon>pets</mat-icon></div>
+            <div>Add cow</div>
+          </div>
+
+        </a></mat-list-item>
+    </mat-list>
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenavconent ">
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
