@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ICow,  IUpdateCow, IVaccine, dates } from '../models/cow';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SCM } from '../models/scm';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class CowsService {
   updateCowVaccine(data : dates,id : string){
     console.log(data, id)
     return this.http.put('http://127.0.0.1:8000/vaccinedetails/' + id, data);
+  }
+
+  scmDetection(data : SCM){
+    return this.http.post('http://127.0.0.1:8000/predict' ,data);
   }
 }

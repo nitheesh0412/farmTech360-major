@@ -1,18 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, OnDestroy, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { User, Userdashboard } from 'src/app/models/user';
-import { UserdataService } from 'src/app/services/userdata.service';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Sort, MatSortModule } from '@angular/material/sort';
-import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { ViewuserComponent } from '../viewuser/viewuser.component';
-import { EdituserComponent } from '../edituser/edituser.component';
-import { Attendance } from 'src/app/models/attendance';
-import { BlockScrollStrategy } from '@angular/cdk/overlay';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SCM } from 'src/app/models/scm';
+import { CowsService } from 'src/app/services/cows.service';
 
 
 
@@ -24,12 +15,32 @@ import { BlockScrollStrategy } from '@angular/cdk/overlay';
 })
 
 export class DiseaseDetectionComponent implements OnInit {
-
+  scm : FormGroup
   isClickedSCM : boolean = false;
   isClickedLSD : boolean = false;
+  isSelectedSCM : boolean = false;
+  isSelectedLSD : boolean = false;
+  SCMPrediction : any
+  constructor(private fb : FormBuilder,private cowService : CowsService){
+    this.scm = this.fb.group({
 
+    })
+  }
   ngOnInit(): void {
-      
+      this.scm = this.fb.group({
+        "DIM( Days In Milk)": ['',[Validators.required]],
+        "Avg(7 days). Daily MY( L )": ['',[Validators.required]],
+        "Kg. milk 305 ( Kg )": ['',[Validators.required]],
+        "Fat (%)": ['',[Validators.required]],
+        "SNF (%)": ['',[Validators.required]],
+        "Density ( Kg/ m3": ['',[Validators.required]],
+        "Protein (%)": ['',[Validators.required]],
+        "Conductivity (mS/cm)": ['',[Validators.required]],
+        "pH": ['',[Validators.required]],
+        "Freezing point (⁰C)": ['',[Validators.required]],
+        "Salt (%)": ['',[Validators.required]],
+        "Lactose (%)": ['',[Validators.required]]
+      });
   }
   SCMDetection(){
     this.isClickedSCM = true;
@@ -46,5 +57,12 @@ export class DiseaseDetectionComponent implements OnInit {
   onUpload(){
     console.log()
   }
-
+  predictSCM(data : SCM){
+    console.log(data)
+    this.isSelectedSCM = true;
+    this.cowService.scmDetection(data).subscribe(data => {
+      this.SCMPrediction = data
+      console.log(this.SCMPrediction)
+    });
+  }
 }

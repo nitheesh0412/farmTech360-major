@@ -1,4 +1,4 @@
-<div *ngIf="!isClickedSCM && !isClickedLSD" class="d-flex justify-content-around">
+<div *ngIf="!isClickedSCM && !isClickedLSD && !isSelectedSCM" class="d-flex justify-content-around">
   <div class="card shadow  mb-5 rounded" style="width: 18rem;">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHeGyCPfueqJibWYKrpS0NJwsOnGstSSaD78nBA0HkQppAP2jYnAvB4g021if8jI_iFb8&usqp=CAU" class="card-img-top" style="width: 18rem; height: 10rem;" alt="...">
     <div class="mx-auto p-5">
@@ -14,16 +14,119 @@
   </div>
 </div>
 
-<div *ngIf="isClickedSCM">
+<div *ngIf="isClickedSCM && !isSelectedSCM">
   <div class="ms-5">
     <h1> SCM detection</h1>
-    <input  class="w-50 form-control" type="file" 
-            (change)="onChange($event)"> 
-  
-    <button (click)="onUpload()"  
-        class="px-3 py-2 mt-3 btn btn-success"> 
-        Upload 
-    </button> 
+    <form [formGroup]="scm">
+      <p>
+        <mat-form-field>
+          <mat-label>Days In Milk</mat-label>
+          <input matInput formControlName="DIM( Days In Milk)">
+        </mat-form-field>
+      </p>
+      <div class="d-flex">
+        <p>
+          <mat-form-field>
+            <mat-label>Avg(7 days). Daily MY( L )</mat-label>
+            <input matInput formControlName="Avg(7 days). Daily MY( L )">
+          </mat-form-field>
+        </p>
+    
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>Kg. milk 305 ( Kg )</mat-label>
+            <input matInput formControlName="Kg. milk 305 ( Kg )">
+          </mat-form-field>
+        </p>
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>Fat (%)</mat-label>
+            <input matInput formControlName="Fat (%)">
+          </mat-form-field>
+        </p>
+      </div>
+    
+      <div class="d-flex">
+        <p>
+          <mat-form-field>
+            <mat-label>SNF (%)</mat-label>
+            <input matInput formControlName="SNF (%)">
+          </mat-form-field>
+        </p>
+    
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>Density ( Kg/ m3 )</mat-label>
+            <input matInput formControlName="Density ( Kg/ m3">
+          </mat-form-field>
+        </p>
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>Protein (%)</mat-label>
+            <input matInput formControlName="Protein (%)">
+          </mat-form-field>
+        </p>
+      </div>
+      <div class="d-flex">
+        <p>
+          <mat-form-field>
+            <mat-label>Conductivity (mS/cm)</mat-label>
+            <input matInput formControlName="Conductivity (mS/cm)">
+          </mat-form-field>
+        </p>
+    
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>pH</mat-label>
+            <input matInput formControlName="pH">
+          </mat-form-field>
+        </p>
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>Freezing point (⁰C)</mat-label>
+            <input matInput formControlName="Freezing point (⁰C)">
+          </mat-form-field>
+        </p>
+      </div>
+      <div class="d-flex">
+        <p>
+          <mat-form-field>
+            <mat-label>Salt (%)</mat-label>
+            <input matInput formControlName="Salt (%)">
+          </mat-form-field>
+        </p>
+    
+    
+        <p class="ps-3">
+          <mat-form-field>
+            <mat-label>Lactose (%)</mat-label>
+            <input matInput formControlName="Lactose (%)">
+          </mat-form-field>
+        </p>
+    
+      </div>
+      <p>
+        <a>
+          <button mat-raised-button color="primary" [disabled]="!scm.valid"
+            (click)="predictSCM(scm.value)">Submit</button>
+        </a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="isSelectedSCM">
+  <div *ngIf="SCMPrediction?.prediction[0] === 0">
+    No SCM
+  </div>
+  <div *ngIf="SCMPrediction?.prediction[0] === 1">
+    SCM detected
   </div>
 </div>
 
