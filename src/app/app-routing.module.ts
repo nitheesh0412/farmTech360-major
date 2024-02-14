@@ -5,6 +5,7 @@ import { LocationComponent } from './components/location/location.component';
 import { VaccinationComponent } from './components/vaccination/vaccination.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddCowComponent } from './components/add-cow/add-cow.component';
+import { NutritionComponent } from './components/nutrition/nutrition.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path : "addcow",
     component :AddCowComponent
+  },
+  {
+    path : "nutrition",
+    component : NutritionComponent
   }
 
 ];

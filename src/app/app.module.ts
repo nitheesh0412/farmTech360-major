@@ -42,6 +42,7 @@ import { EdituserComponent } from './components/edituser/edituser.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomeComponent } from './components/home/home.component';
 import { AddCowComponent } from './components/add-cow/add-cow.component';
+import { NutritionComponent } from './components/nutrition/nutrition.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { AddCowComponent } from './components/add-cow/add-cow.component';
     ViewuserComponent,
     EdituserComponent,
     HomeComponent,
-    AddCowComponent
+    AddCowComponent,
+    NutritionComponent
   ],
   imports: [
     BrowserModule,
