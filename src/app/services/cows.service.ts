@@ -34,6 +34,11 @@ export class CowsService {
   }
 
   scmDetection(data : SCM){
-    return this.http.post('http://127.0.0.1:8000/predict' ,data);
+    return this.http.post('http://127.0.0.1:8000/predictscm' ,data);
+  }
+  LSDDetection(file : File){
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post('http://127.0.0.1:8000/predict', formData);
   }
 }

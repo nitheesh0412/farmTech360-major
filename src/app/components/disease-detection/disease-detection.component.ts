@@ -20,7 +20,9 @@ export class DiseaseDetectionComponent implements OnInit {
   isClickedLSD : boolean = false;
   isSelectedSCM : boolean = false;
   isSelectedLSD : boolean = false;
+  selectedFile: File | null = null;
   SCMPrediction : any
+  LSDResponse : any
   constructor(private fb : FormBuilder,private cowService : CowsService){
     this.scm = this.fb.group({
 
@@ -50,13 +52,29 @@ export class DiseaseDetectionComponent implements OnInit {
     this.isClickedLSD = true;
     this.isClickedSCM = false;
   }
-  onChange(e : any){
-    file : File = e.target.files[0]
-    
+
+  onChange(event: any) {
+    this.selectedFile = event.target.files[0];
   }
   onUpload(){
-    console.log()
+    this.isSelectedLSD = true;
+    if (this.selectedFile) {
+      this.cowService.LSDDetection(this.selectedFile).subscribe(
+        (response: any) => {
+          // Handle success response
+          this.LSDResponse = response;
+          console.log('File uploaded successfully:', response);
+        },
+        (error) => {
+          // Handle error response
+          console.error('Error uploading file:', error);
+        }
+      );
+    } else {
+      console.warn('No file selected');
+    }
   }
+  
   predictSCM(data : SCM){
     console.log(data)
     this.isSelectedSCM = true;
