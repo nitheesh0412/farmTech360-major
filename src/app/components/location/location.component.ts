@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Attendance } from 'src/app/models/attendance';
 import { User } from 'src/app/models/user';
-import { GooglePlacesService } from 'src/app/services/google-places.service';
+import { LocationService } from 'src/app/services/location.service';
 import { UserdataService } from 'src/app/services/userdata.service';
 @Component({
   selector: 'app-location',
@@ -14,13 +14,14 @@ export class LocationComponent implements OnInit {
   filter : string = ""
   latitude: number = 0;
   longitude: number = 0;
+  doctorDetails : any 
   location(){
 
   }
-  ngOnInit(): void {
-      this.getLocation();
+  constructor(private _locationService : LocationService){
+
   }
-  getLocation() {
+  ngOnInit(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -35,6 +36,14 @@ export class LocationComponent implements OnInit {
     else {
       console.error('Geolocation is not supported by this browser.');
     }
+  }
+  getLocation() {
+    
+    this._locationService.getVetByLatLon(this.latitude,this.longitude).subscribe(data => {
+      console.log(data);
+      this.doctorDetails = data;
+      console.log(this.doctorDetails.message.slice(0,5  ))
+    });
   }
 
 }

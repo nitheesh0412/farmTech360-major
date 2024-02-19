@@ -5,4 +5,10 @@
 
 <button (click)="getLocation()">get doctors</button>
 
-
+<div *ngFor = "let val of doctorDetails?.message.slice(0,5)" class="doctor-details">
+  <div class="hospital"><b>{{val.Hospital}}</b></div>
+  <div class="name">{{val.Name}}</div>
+  <div class="specialization">{{val.Specialization}}</div>
+  <div class="consultation">Consultation fee: {{val.Consultation}}</div>
+  <div class="experience">Experience: {{val.Experience}} years</div>
+</div>

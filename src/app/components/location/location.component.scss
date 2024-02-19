@@ -1,3 +1,44 @@
 input:focus{
   outline: none;
 }
+// Define your variables
+$primary-color: #3498db;
+$secondary-color: #2c3e50;
+$font-stack: 'Helvetica Neue', sans-serif;
+
+// Style the button
+button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+// Style the div container
+div {
+  font-family: $font-stack;
+  color: $secondary-color;
+}
+
+// Style the doctor details
+.doctor-details {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid $secondary-color;
+  border-radius: 4px;
+
+  .hospital,
+  .name,
+  .specialization,
+  .consultation,
+  .experience {
+    margin-bottom: 10px;
+  }
+}
