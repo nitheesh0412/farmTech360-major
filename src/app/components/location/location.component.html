@@ -2,10 +2,10 @@
   <input class="border-0 " style="width: 20rem;" [(ngModel)]="filter" placeholder="search" (input)="location()"><mat-icon
     class="mt-2">search</mat-icon>
 </div>
+<!-- 
+<button (click)="getLocation()">get doctors</button> -->
 
-<button (click)="getLocation()">get doctors</button>
-
-<div *ngFor = "let val of doctorDetails?.message.slice(0,5)" class="doctor-details">
+<div *ngFor = "let val of real" class="doctor-details">
   <div class="hospital"><b>{{val.Hospital}}</b></div>
   <div class="name">{{val.Name}}</div>
   <div class="specialization">{{val.Specialization}}</div>
