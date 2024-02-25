@@ -6,6 +6,7 @@ import { VaccinationComponent } from './components/vaccination/vaccination.compo
 import { HomeComponent } from './components/home/home.component';
 import { AddCowComponent } from './components/add-cow/add-cow.component';
 import { NutritionComponent } from './components/nutrition/nutrition.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path : "nutrition",
     component : NutritionComponent
+  },
+  {
+    path : "notifications",
+    component : NotificationsComponent
   }
 
 ];

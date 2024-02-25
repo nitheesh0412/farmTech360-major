@@ -28,6 +28,10 @@ export class CowsService {
     return this.http.get('http://127.0.0.1:8000/vaccinedetails');
   }
 
+  getVaccineByID(id : string){
+    return this.http.get('http://127.0.0.1:8000/vaccine/' + id);
+  }
+
   updateCowVaccine(data : dates,id : string){
     console.log(data, id)
     return this.http.put('http://127.0.0.1:8000/vaccinedetails/' + id, data);

@@ -59,8 +59,15 @@ a:visited {
     }
   }
 }
-
-
+.toolbar{
+  display : flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notification{
+  margin-inline-start: 65rem;
+  padding-top: 10px;
+}
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */

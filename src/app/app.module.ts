@@ -21,7 +21,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {NgIf, NgFor} from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 
@@ -43,6 +43,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomeComponent } from './components/home/home.component';
 import { AddCowComponent } from './components/add-cow/add-cow.component';
 import { NutritionComponent } from './components/nutrition/nutrition.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ import { NutritionComponent } from './components/nutrition/nutrition.component';
     EdituserComponent,
     HomeComponent,
     AddCowComponent,
-    NutritionComponent
+    NutritionComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,9 @@ import { NutritionComponent } from './components/nutrition/nutrition.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), 
   ],
   providers: [ {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},DatePipe],
   bootstrap: [AppComponent]

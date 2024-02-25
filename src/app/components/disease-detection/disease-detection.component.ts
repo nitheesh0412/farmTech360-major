@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit, OnDestroy, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, OnInit, OnDestroy, ViewChild, OnChanges, SimpleChanges, inject, TemplateRef } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SCM } from 'src/app/models/scm';
 import { CowsService } from 'src/app/services/cows.service';
 
-
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-disease-detection',
@@ -15,6 +14,8 @@ import { CowsService } from 'src/app/services/cows.service';
 })
 
 export class DiseaseDetectionComponent implements OnInit {
+  private modalService = inject(NgbModal);
+
   scm : FormGroup
   isClickedSCM : boolean = false;
   isClickedLSD : boolean = false;
@@ -74,7 +75,9 @@ export class DiseaseDetectionComponent implements OnInit {
       console.warn('No file selected');
     }
   }
-  
+  openVerticallyCentered(content: TemplateRef<any>) {
+		this.modalService.open(content, { centered: true });
+	}
   predictSCM(data : SCM){
     console.log(data)
     this.isSelectedSCM = true;

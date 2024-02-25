@@ -114,21 +114,30 @@
       <p>
         <a>
           <button mat-raised-button color="primary" [disabled]="!scm.valid"
-            (click)="predictSCM(scm.value)">Submit</button>
+            (click)="predictSCM(scm.value)" (click)="openVerticallyCentered(content)">Submit</button>
         </a>
       </p>
     </form>
   </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h2 class="modal-title text-success">SCM detection</h2>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="SCMPrediction?.prediction[0] === 0">
+        SCM is not detected
+      </div>
+      <div *ngIf="SCMPrediction?.prediction[0] === 1">
+        SCM detected
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" (click)="modal.close('Close click')">Thanks</button>
+    </div>
+  </ng-template>
 </div>
 
-<div *ngIf="isSelectedSCM">
-  <div *ngIf="SCMPrediction?.prediction[0] === 0">
-    No SCM
-  </div>
-  <div *ngIf="SCMPrediction?.prediction[0] === 1">
-    SCM detected
-  </div>
-</div>
 
 <div *ngIf="isClickedLSD">
   <div class="ms-5">
@@ -136,13 +145,28 @@
     <input  class="w-50 form-control" type="file" 
             (change)="onChange($event)"> 
   
-    <button (click)="onUpload()"  
+    <button (click)="onUpload()"  (click)="openVerticallyCentered(content)"
         class="px-3 py-2 mt-3 btn btn-success"> 
         Upload 
     </button> 
   </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h2 class="modal-title text-success">Lumpy skin disease detection</h2>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <h3>Your cow has <b>{{ LSDResponse.predicted_class }}</b></h3>
+      <ng-container *ngIf="LSDResponse.predicted_class === 'Normal Skin'; else lumpySkinContent">
+        <p>Don't worry, your cow is fine</p>
+      </ng-container>
+      <ng-template #lumpySkinContent>
+        <p>please consult nearest veternary doctor</p>
+      </ng-template>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" (click)="modal.close('Close click')">Thanks</button>
+    </div>
+  </ng-template>
 </div>
 
-<div *ngIf="isSelectedLSD">
-  {{LSDResponse.predicted_class}}
-</div>

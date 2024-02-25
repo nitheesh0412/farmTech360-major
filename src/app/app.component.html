@@ -2,10 +2,15 @@
 
 
 <mat-toolbar>
-  <div class="">
-    <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button> FarmTech360
+  <div class="toolbar d-flex justify-content-between">
+    <div class="">
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button> FarmTech360
+    </div>
+    <div class="notification">
+      <a routerLink="notifications"><mat-icon>notifications_active</mat-icon></a>
+    </div>
   </div>
 </mat-toolbar>
 <mat-sidenav-container class="example-container">

@@ -8,6 +8,8 @@ import {MatTableDataSource} from '@angular/material/table'
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatDialog } from '@angular/material/dialog';
 import { EdituserComponent } from '../edituser/edituser.component';
+import { VaccineService } from 'src/app/services/vaccine.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-vaccination',
   templateUrl: './vaccination.component.html',
@@ -25,7 +27,9 @@ export class VaccinationComponent implements OnInit, AfterViewInit {
     private cowService : CowsService,
     private _liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog,
-    public datepipe: DatePipe){
+    public datepipe: DatePipe,
+    private vaccineService : VaccineService,
+    private toastr: ToastrService){
     this.vaccinedata = this.fb.group({
 
     })
@@ -105,16 +109,25 @@ export class VaccinationComponent implements OnInit, AfterViewInit {
 
   openDialogedit(idNo: number): void {
 
-    this.cowService.getVaccinedata().subscribe((data: any) => {
+    this.cowService.getVaccineByID(String(idNo)).subscribe((data : any) => {
+      if(data.doses > data.status.length){
+        this.cowService.getVaccinedata().subscribe((data: any) => {
 
-      const dialogRef = this.dialog.open(EdituserComponent, {
-        data: idNo,
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.subscribeUsers();
-      });
-    }
-    )
+          const dialogRef = this.dialog.open(EdituserComponent, {
+            data: idNo,
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            this.subscribeUsers();
+          });
+        }
+        )
+      } else {
+        this.toastr.error('wrong information', 'you are trying to add vaccine data greater than doses')
+      }
+    })
+
+    
   }
+  
 }
