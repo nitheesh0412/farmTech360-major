@@ -2,3 +2,78 @@
   /* For mobile phones: */
   
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+::selection{
+  color: #000;
+  background: #fff;
+}
+
+.img{
+  background: url('https://t4.ftcdn.net/jpg/01/70/07/17/360_F_170071737_UINsB1OZihE4R1S94mKfXEFtkIpw2cUM.jpg')no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.img::before{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.center{
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+.center .title{
+  color: #fff;
+  font-size: 55px;
+  font-weight: 600;
+}
+.center .sub_title{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 300;
+}
+.center .btns{
+  margin-top: 20px;
+}
+.center .btns .button {
+  background-color: none; /* Green */
+  border: rgb(224, 215, 215);
+  color: rgb(237, 227, 227);
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+
+.button5 {
+  background-color: transparent;
+  color: rgb(29, 28, 28);
+  border: 2px solid #1e1d1d;
+}
+
+.button5:hover {
+  background-color: #c27512;
+  color: rgb(8, 8, 8);
+}
