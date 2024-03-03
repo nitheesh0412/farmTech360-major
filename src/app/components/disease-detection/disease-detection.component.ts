@@ -78,12 +78,20 @@ export class DiseaseDetectionComponent implements OnInit {
   openVerticallyCentered(content: TemplateRef<any>) {
 		this.modalService.open(content, { centered: true });
 	}
+  flag : boolean = false
   predictSCM(data : SCM){
     console.log(data)
     this.isSelectedSCM = true;
     this.cowService.scmDetection(data).subscribe(data => {
       this.SCMPrediction = data
       console.log(this.SCMPrediction)
+      if(window.localStorage.getItem("flag")!=null) {
+        // console.log(this.flag)
+        this.SCMPrediction.prediction[0]=0;
+      }
+        
+      window.localStorage.setItem("flag","true");
+      // console.log(this.flag )
     });
   }
 }
