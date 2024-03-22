@@ -1,0 +1,31 @@
+<div class="m-5">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+        class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                id
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sex">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sex">
+                sex
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age">
+                age
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColmns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColmns;"></tr>
+    </table>
+</div>

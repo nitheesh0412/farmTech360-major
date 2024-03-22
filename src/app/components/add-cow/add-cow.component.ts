@@ -13,7 +13,7 @@ import { CowsService } from 'src/app/services/cows.service';
 export class AddCowComponent {
   hide: boolean = true
   userData: FormGroup;
-  
+  selected : string = "male"
   constructor(private fb: FormBuilder,
     private cowService : CowsService) {
     this.userData = this.fb.group({
@@ -25,8 +25,8 @@ export class AddCowComponent {
       id: ['', [Validators.required]],
       age: ['', [Validators.required,
       Validators.pattern("^[0-9]*$"),]],
-
-
+      sex : ['', Validators.required]
+      
     })
   }
   getErrorMessage() {
@@ -34,6 +34,5 @@ export class AddCowComponent {
   }
   postCow(user : ICow) {
     this.cowService.postCow(user).subscribe((data : any) => console.log(data));
-    
   }
 }

@@ -32,7 +32,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 
 import { MatTableDataSource } from '@angular/material/table';
-
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { Sort, MatSortModule} from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -45,6 +45,47 @@ import { AddCowComponent } from './components/add-cow/add-cow.component';
 import { NutritionComponent } from './components/nutrition/nutrition.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ToastrModule, provideToastr } from 'ngx-toastr';
+import { CowlistComponent } from './components/cowlist/cowlist.component';
+const customNotifierOptions: NotifierOptions = {
+  position: {
+		horizontal: {
+			position: 'left',
+			distance: 12
+		},
+		vertical: {
+			position: 'bottom',
+			distance: 12,
+			gap: 10
+		}
+	},
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: 'hide',
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 4
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +97,8 @@ import { ToastrModule, provideToastr } from 'ngx-toastr';
     HomeComponent,
     AddCowComponent,
     NutritionComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    CowlistComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +132,7 @@ import { ToastrModule, provideToastr } from 'ngx-toastr';
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), 
+    NotifierModule.withConfig(customNotifierOptions)
   ],
   providers: [ {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},DatePipe],
   bootstrap: [AppComponent]

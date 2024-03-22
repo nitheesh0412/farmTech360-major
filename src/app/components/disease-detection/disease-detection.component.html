@@ -142,14 +142,14 @@
 <div *ngIf="isClickedLSD">
   <div class="ms-5">
     <h1>LSD detection</h1>
-    <input  class="w-50 form-control" type="file" 
-            (change)="onChange($event)"> 
-  
-    <button (click)="onUpload()"  (click)="openVerticallyCentered(content)"
-        class="px-3 py-2 mt-3 btn btn-success"> 
-        Upload 
-    </button> 
+    <input class="w-50 form-control" type="file" (change)="onChange($event)">
+    <img *ngIf="imageSrc" [src]="imageSrc" class="mt-3" style="max-width: 100%;">
+    <br>
+    <button (click)="onUpload()" (click)="openVerticallyCentered(content)" class="px-3 py-2 mt-3 btn btn-success">
+      Upload
+    </button>
   </div>
+  
   <ng-template #content let-modal>
     <div class="modal-header">
       <h2 class="modal-title text-success">Lumpy skin disease detection</h2>
@@ -161,12 +161,15 @@
         <p>Don't worry, your cow is fine</p>
       </ng-container>
       <ng-template #lumpySkinContent>
-        <p>please consult nearest veternary doctor</p>
+        <p>Please consult the nearest veterinary doctor</p>
       </ng-template>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-info" (click)="modal.close('Close click')">Thanks</button>
+      <a *ngIf="LSDResponse.predicted_class === 'Lumpy Skin'"  routerLink="/location"><button  type="button" class="btn btn-info" (click)="modal.close('Close click')">vet doctors</button></a>
+
+      <a *ngIf="LSDResponse.predicted_class === 'Normal Skin'"  routerLink="/nutrition"><button  type="button" class="btn btn-info" (click)="modal.close('Close click')">Thanks</button></a>
     </div>
   </ng-template>
 </div>
+
 

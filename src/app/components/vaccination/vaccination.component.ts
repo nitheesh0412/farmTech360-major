@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EdituserComponent } from '../edituser/edituser.component';
 import { VaccineService } from 'src/app/services/vaccine.service';
 import { ToastrService } from 'ngx-toastr';
+import { NotifierService } from 'angular-notifier';
+
 @Component({
   selector: 'app-vaccination',
   templateUrl: './vaccination.component.html',
@@ -21,6 +23,8 @@ export class VaccinationComponent implements OnInit, AfterViewInit {
   isClicked : boolean = false
   cows : any
   selected = 'none';
+  private  notifier: NotifierService;
+
   displayedColumns: string[] = ['id', 'vaccineName', 'doses', 'time interval','vaccination','add'];
   dataSource = new MatTableDataSource([]);
   constructor(private fb : FormBuilder,
@@ -29,10 +33,12 @@ export class VaccinationComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     public datepipe: DatePipe,
     private vaccineService : VaccineService,
-    private toastr: ToastrService){
+    private toastr: ToastrService,
+    notifierService: NotifierService){
     this.vaccinedata = this.fb.group({
-
+      
     })
+    this.notifier = notifierService;
   }
 
   ngOnInit(): void {
@@ -48,6 +54,16 @@ export class VaccinationComponent implements OnInit, AfterViewInit {
     })
 
     this.subscribeUsers();
+    // if (Notification.permission !== 'granted') {
+    //   Notification.requestPermission().then(permission => {
+    //     if (permission === 'granted') {
+    //       new Notification('Hello, world!');
+    //     }
+    //   });
+    // } else {
+    //   new Notification('Hello, world!');
+    // }
+   
 
 
   }
@@ -97,6 +113,7 @@ export class VaccinationComponent implements OnInit, AfterViewInit {
 
   onClick(){
     this.isClicked = true
+    this.notifier.notify('success', 'You are awesome! I mean it!');
   }
 
   announceSortChange(sortState: Sort) {

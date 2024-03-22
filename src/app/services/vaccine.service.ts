@@ -7,6 +7,7 @@ export class VaccineService {
 
   vaccineNotificationData : Array<Object> = []
 
+  pastNotificationData : Array<Object> = []
   
   constructor() { }
 }

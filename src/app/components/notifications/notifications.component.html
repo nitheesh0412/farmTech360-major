@@ -2,7 +2,16 @@
     <div class="card m-5 p-3 bg-body border-0 shadow-lg rounded">
         <div class="d-flex">
             <div><mat-icon>notification_important</mat-icon></div>
-            <div><h3>cow ID: {{cow.id}} of age {{cow.age}} need vaccine {{cow.vaccine_name}} needs {{cow.status.length + 1}} <sup>nd/rd/th</sup> dosage in 3 days</h3></div>
+            <div><h3>cow ID: {{cow.id}}  need vaccine {{cow.vaccine_name}} of {{cow.status.length + 1}} <sup>nd/rd/th</sup> dosage in 3 days</h3></div>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let cow of pastVaccineDue">
+    <div class="card m-5 p-3 bg-body border-0 shadow-lg rounded">
+        <div class="d-flex">
+            <div><mat-icon>notification_important</mat-icon></div>
+            <div><h3>cow ID: {{cow.id}} is past due its {{cow.status.length + 1}} dosage of vaccine {{cow.vaccine_name}}   </h3></div>
         </div>
     </div>
 </div>

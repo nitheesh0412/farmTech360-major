@@ -53,9 +53,19 @@ export class DiseaseDetectionComponent implements OnInit {
     this.isClickedLSD = true;
     this.isClickedSCM = false;
   }
-
+  imageSrc: string | ArrayBuffer | null = null;
   onChange(event: any) {
+    
     this.selectedFile = event.target.files[0];
+
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result;
+      };
+    } 
   }
   onUpload(){
     this.isSelectedLSD = true;
