@@ -67,7 +67,7 @@ userSubscription$ !: Subscription
   }
   notifications() {
     const currentTime = new Date();
-    const intervalInMilliseconds = 27 * 24 * 60 * 60 * 1000;
+    const intervalInMilliseconds =  27 * 24 * 60 * 60 * 1000;
 
     const past3days = 3 * 24 * 60 * 60 * 1000;
     // console.log(this.vaccineList);
@@ -76,10 +76,10 @@ userSubscription$ !: Subscription
       // console.log(typeof(time));
       const givenTime = new Date(time);
       const timeDifference = currentTime.getTime() - givenTime.getTime();
-      if (timeDifference >= intervalInMilliseconds + past3days && val.doses > val.status.length) {
+      if (timeDifference >= (val.timeinterval-1)*30*24*60*60*1000 + intervalInMilliseconds + past3days && val.doses > val.status.length) {
         this. pastdue(val);
       }
-      else if (timeDifference >= intervalInMilliseconds && val.doses > val.status.length) {
+      else if (timeDifference >= (val.timeinterval-1)*30*24*60*60*1000 +  intervalInMilliseconds && val.doses > val.status.length) {
         this.sendNotification(val);
       }
     }

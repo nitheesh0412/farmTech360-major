@@ -9,8 +9,8 @@ interface DoctorDetails {
   Hospital: string;
   Name: string;
   Specialization: string;
-  Consultation: number;
-  Experience: number;
+  Consultation: string;
+  Experience: string;
   // ... other properties
 }
 @Component({
